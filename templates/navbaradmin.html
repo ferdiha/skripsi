@@ -1,0 +1,45 @@
+          <div id="left-menu">
+              <div class="sub-left-menu scroll">
+                <ul class="nav nav-list">
+                    <li><div class="left-bg"></div></li>
+                    
+                    <li class="{% if menu == 'beranda' %} active {% endif %} ripple">
+                      <a href="{% url 'beranda_admin' %}"><span class="fa-home fa"></span> Beranda</a>
+                    </li>
+                    <li class="{% if menu == 'produk' %} active {% endif %} ripple">
+                      <a href="{% url 'produk_admin' %}"><span class="fa-calendar-check-o fa"></span> Produk</a>
+                    </li>
+                    <li class="{% if menu == 'pelanggan' %} active {% endif %} ripple">
+                      <a href="{% url 'pelanggan_admin' %}"><span class="fa-users fa"></span> Pelanggan</a>
+                    </li>
+                    <li class="{% if menu == 'slide' %} active {% endif %} ripple">
+                      <a href="{% url 'slide_admin' %}"><span class="fa-image fa"></span> Slide Show</a>
+                    </li>
+                   <li class="{% if menu == 'setting' %} active {% endif %} ripple">
+                      <a class="tree-toggle nav-header">
+                        <span class="fa fa-cog"></span> Setting
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+                      <ul class="nav nav-list tree">
+                        <li><a href="{% url 'tahun_admin' %}"><i class="fa fa-line-chart"></i> Tambah Tahun</a></li>
+                        <li ><a href="{% url 'settingpembayaran' %}"><i class="fa fa-money"></i> Pembayaran</a></li>
+                      </ul>
+                    </li>
+                   <li class="{% if menu == 'transaksi' %} active {% endif %}ripple">
+                      <a class="tree-toggle nav-header">
+                        <span class="fa fa-newspaper-o"></span> Monitoring Transaksi
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+                      <ul class="nav nav-list tree">
+                        <li ><a href="{% url 'belumbayar_admin' %}"><i class="fa fa-area-chart"></i> Data Belum Bayar </a></li>
+                        <li ><a href="{% url 'bayar_admin' %}"><i class="fa fa-folder-open"></i> Data Lunas Bayar</a></li>
+                        <li ><a href="{% url 'perbaikan_admin'  %}"><i class="fa fa-thumb-tack"></i> Perbaikan</a></li>
+                      </ul>
+                    </li>
+                    
+                    <li class=" ripple">
+                      <a href="{% url 'logout' %}">LogOut</a>
+                    </li>
+                  </ul>
+                </div>
+            </div>

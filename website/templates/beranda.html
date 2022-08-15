@@ -1,0 +1,135 @@
+
+{% extends "basewebsite.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+    <!-- SLIDER -->
+    <section>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+
+                {% for row in slideatas %}
+                <div class="item slider1 active">
+                    {% if row.gambar_slide %}
+                    <img src="{{row.gambar_slide.url}}" alt="">
+                    
+                    {% endif %}
+                    <div class="carousel-caption slider-con">
+                        <h2>{% if row.judul %} {{row.judul}}  {% endif %} <span>{% if row.judul_samping %} {{row.judul_samping}}  {% endif %}</span></h2>
+                        <p>{% if row.kalimat %} {{row.kalimat}}  {% endif %}</p>
+                       
+                    </div>
+                </div>
+                {% empty %}
+                <div class="alert alert-danger"> Slide Pertama Kosong </div>
+                {% endfor %}
+              
+
+                {% for row in slide %}
+                    <div class="item">
+                    {% if row.gambar_slide %}
+                    <img src="{{row.gambar_slide.url}}" alt="">
+                    
+                    {% endif %}
+                    <div class="carousel-caption slider-con">
+                         <h2>{% if row.judul %} {{row.judul}}  {% endif %} <span>{% if row.judul_samping %} {{row.judul_samping}}  {% endif %}</span></h2>
+                        <p>{% if row.kalimat %} {{row.kalimat}}  {% endif %}</p>
+                    
+                    </div>
+                </div>
+                {% endfor %}
+                
+              
+
+
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <i class="fa fa-chevron-left slider-arr"></i>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <i class="fa fa-chevron-right slider-arr"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section class="pop-cour">
+        <div class="container com-sp pad-bot-70">
+            <div class="row">
+                <div class="con-title">
+                   <h2>Produk <span>Wifi Qiana</span></h2>
+                    <p>Kumpulan Produk-produk Wifi Murah meriah </p>
+                </div>
+            </div>
+            <div class="row">
+
+             {% for row in produk  %}
+                     <div class="col-md-6">
+                    <div>
+                        <!--POPULAR COURSES-->
+                        <div class="home-top-cour">
+                            <!--POPULAR COURSES IMAGE-->
+                            <div class="col-md-3"> 
+                            {% if row.gambar %}
+                            <img src="{{row.gambar.url}}" alt=""> 
+                            {% else %}
+                            <img src="{% static 'gambar/no.png' %}" alt=""> 
+                            {% endif %}
+                            
+                            </div>
+                            <!--POPULAR COURSES: CONTENT-->
+                            <div class="col-md-9 home-top-cour-desc">
+                                <a href="">
+                                    <h3>{{row.nama_produk|title}}</h3>
+                                </a>
+                                <h4>Harga : Rp.{{row.harga|intcomma}} </h4> Biaya Pemasangan : Rp.{{row.harga_pemasangan|intcomma}} <h4></h4>
+                                <p> {{ row.keterangan|truncatewords:10|safe }}</p> 
+                                <div class="hom-list-share">
+                                   <ul>
+                                        <li><a href="{% url 'detailproduk' row.slug  %}"><i class="fa fa-book" aria-hidden="true"></i> Selengkapnya</a> </li>
+                                        <li><a href=""><i class="fa fa-calendar" aria-hidden="true"></i> {{row.date_created|date:"d M Y"}}</a> </li>
+                                    </ul> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {% empty %}
+                  <div class="alert alert-danger"> Data Berita Belum diisi Kosong </div>
+                {% endfor %}
+               
+                
+
+             
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- NEWS AND EVENTS -->
+    <section>
+        <div class="container com-sp">
+            <div class="row">
+                <div class="con-title">
+                    <h2>Seputar  <span>Wifi Qiana</span></h2>
+                    <p>- Layanan wifi Rumahan Murah meriah dan kecepatan tangguh tanpa lelet dan lemot</p>
+                    <p>- Internet cepat harga bersahabat. Segera pasang dan dapatkan diskon khusus. Hanya bulan ini saja!</p>
+                    <p>- Belajar daring tanpa lemot? Segera pasang Indihome di rumah Anda! Butuh layanan internet yang cepat dengan harga terjangkau? Qiana Wifi adalah solusinya!</p>
+                    <p>- Paket internet cepat dan murah, diskon 23% untuk yang berlangganan bulan ini. Segera pasang Qiana Wifi. </p>
+                    <p>- Lagi bikin bisnis online tapi belum nemu provider internet yang tepat? Qiana Wifi jawabannya!</p>
+                    <p>- Jangan sembarangan memilih provider internet. Serahkan saja pada provider yang sudah terbukti keampuhannya. Qiana Wifi, siap untuk membuat kegiatanmu jadi makin asyik dan seru. Harga mulai Rp100.000/bulan. </p>
+                    <p>- Butuh koneksi internet untuk keluarga atau hanya untuk main game? Qiana Wifi siap menyediakannya dengan harga terjangkau. Diskon 15% untuk pelanggan di bulan ini.</p>
+                    <p>- Saat ini kebutuhan internet memang menjadi kebutuhan yang penting, apalagi bagi pelajar dan mahasiswa. Yuk, nikmati internetan sepuasnya dengan Qiana Wifi.</p>
+                    <p>- Belajar online jadi lebih menyenangkan tanpa takut macet, hilang sinyal dan takut tiba-tiba habis kuota! Pakai Qiana Wifi segera di rumahmu.</p>
+                </div>
+            </div>
+          
+        </div>
+    </section>
+
+   {% endblock content  %}

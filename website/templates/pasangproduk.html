@@ -1,0 +1,152 @@
+
+{% extends "basewebsite.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<section>
+        <div class="container">
+            <div class="row">
+                <div class="cor">
+                   
+                    <section>
+        <div class="container com-sp">
+            <div class="row">
+                <div class="con-title">
+                    <h2>Pasang  <span>Wifi Qiana</span></h2>
+                    {% comment %}  {% endcomment %}
+                     <div class="sb2-2-3">
+                    <div class="row">
+                        <div class="col-md-12">
+						<div class="box-inn-sp admin-form">
+                                <div class="inn-title">
+                                    <h4>Tekan Setuju untuk melanjutkan ke Pembayaran Pemasangan</h4>
+                                   
+                                </div>
+                                <div class="tab-inn">
+                        <form role="form" id="simpanpasangbaru" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="id_produk" value="{{produkdetail.id}}" name="id_produk"class="form-control">
+                        {% csrf_token %}
+                        	 <div class="input-field col s4"><span><h4>Pilih Bank*) :</h4>
+                             <select id="bank" name="bank">
+                             <option value="0">----- Pilih Bank -----</option>
+                             <option value="bni">Bank BNI</option>
+                             <option value="bri">Bank BRI</option>
+                             <option value="bca">Bank BCA</option>
+                             </select>
+                             </span></div>
+                        <h4>Jenis Wifi Qiana : <b>{{produkdetail.nama_produk}}<b/></h4>
+                        <h4>Harga Pemasangan**) : <b>Rp. {{produkdetail.harga_pemasangan|intcomma}}<b/></h4>
+						<h4>Harga Perbulan : <b>Rp. {{produkdetail.harga|intcomma}}<b/></h4>
+					
+						<h4>Keterangan Wifi: <b>{{produkdetail.keterangan|safe}}<b/></h4>
+						
+                        <br/>
+                        *) Pilihan bank kan jadi permanen setiap Anda melakukan transaksi Pembayaran Setiap bulannya
+                        <br/>
+                        **) Alat dipinjaman selama berlangganan, Apabila suatu saat ada Kerusakan/perbaikan tidak akan dikenaka biaya lagi
+                        <hr/>
+										<div class="row">
+                                            <div class="input-field col s12">
+                                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" value="SETUJU" class="waves-button-input" id="simpan"></i>
+                                              
+                                            </div>
+                                            
+                                        </div>
+                                        <br>
+                                              <span id="loading" class="text-success" style="display:none;"><i class="fa fa-spinner fa-spin fa-lg"></i> Memuat data..</span> 
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% comment %}  {% endcomment %}
+                </div>
+            </div>
+          
+        </div>
+    </section>
+        
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+<script type="text/javascript" language="javascript">
+
+$('body').on('submit', '#simpanpasangbaru',function (e) {
+e.preventDefault();
+    var bank = $('#bank').val()
+    
+     if (bank == "0") {
+        swal({
+            title: "Perhatikan!!",
+            text: "Data Bank Masih Kosong",
+            closeModal: false
+        }).then(function() {
+                swal.close();
+                $('#bank').focus();
+        });
+    }else{
+
+    
+   let simpan = confirm("Apakah Anda Yakin akan melakukan pemasangan Wifi?");
+             $('#loading').show();
+              $('#simpan').attr('disabled','disabled'); 
+            if(simpan){
+               $.ajax({
+                     
+                    url: "{% url 'simpanpasangbaru' %}",
+                    type:"post",
+                    data:new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function(){
+                       
+                      }, 
+                     
+                        success: function(respon){
+                          $('#loading').hide();
+                          $('#simpan').removeAttr('disabled','disabled');
+
+                          swal({
+                                title: "Ada sudah tersimpan",
+                                text: "Selamat bergabung dengan Qiana Wifi, silakan buat VA (Virtual Account)",
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: true,
+                                })
+                                .then((willDelete) => {
+                                if (willDelete) {
+                                  window.location.href = "{% url 'datapasang' %}";
+                                } else {
+                                   window.location.href = "{% url 'datapasang' %}";
+                                }
+                                });
+                            
+                    },
+                    error:function(respon){
+                        swal("Error", "Maaf terdapat error pada data anda", "error");
+                         $('#loading').hide();
+                          $('#simpan').removeAttr('disabled','disabled');
+                    }
+                });
+              
+            
+              
+               
+            }else{
+                alert("Data batal untuk disimpan");
+                $('#loading').hide();
+                $('#simpan').removeAttr('disabled','disabled');
+                 
+                 
+            }
+    }
+            
+  });
+
+
+ </script>
+{% endblock content  %}

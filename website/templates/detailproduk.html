@@ -1,0 +1,80 @@
+
+{% extends "basewebsite.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<section>
+        <div class="container com-sp pad-bot-70 pg-inn">
+            <div class="row">
+                <div class="cor">
+                    <div class="col-md-3">
+                        <div class="cor-top-deta cor-side-com">
+                            <div class="cor-top-deta">
+                                <div class="ho-st-login cor-apply field-com">
+                                    <div class="col s12">
+                                        <form class="col s12">
+                                            <div class="cor-left-app-tit">
+                                                <h4>Detail Produk</h4>
+                                                <p>{{produkdetail.nama_produk|title}}</p>
+                                            </div>
+            
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </form>
+            <div class="row">
+                <div class="h-gal">
+					<ul>
+						<p>Harga Pemasangan : <b>Rp. {{produkdetail.harga_pemasangan|intcomma}}<b/></p>
+						<p>Harga Perbulan : <b>Rp. {{produkdetail.harga|intcomma}}<b/></p>
+                        <hr/>
+						<a href="{% url 'pasangproduk' produkdetail.slug  %}" type="button" class="btn btn-block btn-danger"><i class="fa fa-angellist"></i> Pasang Sekarang</button>
+						<a href="{% url 'beranda'  %}" type="button" class="btn btn-block btn-info"><i class="fa fa-angle-double-left"></i> Kembali</a>
+					</ul>
+                </div>
+            </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="cor-mid-img">
+                         {% if produkdetail.gambar %}
+                                    <img src="{{produkdetail.gambar.url}}" alt=""> 
+                                
+                        {% endif %}
+                            
+                        </div>
+                        <div class="cor-con-mid">
+                            <div class="cor-p1">
+                                <h2>{{produkdetail.nama_produk|title}}</h2>
+                                <div class="share-btn">
+                                    <ul>
+                                        <li><a href="http://www.facebook.com/sharer.php?u=https://{{domain}}/produk/{{produkdetail.jenis.slug}}/{{produkdetail.slug}}/" target="_blank"><i class="fa fa-facebook fb1"></i> Share Facebook</a>
+                                        </li>
+                                        <li><a href="https://twitter.com/share?url=https://{{domain}}/produk/{{produkdetail.jenis.slug}}/{{produkdetail.slug}}/" target="_blank"><i class="fa fa-twitter tw1"></i> Share Twitter</a>
+                                        </li>
+                                        <li><a href="whatsapp://send?text=https://{{domain}}/produk/{{produkdetail.jenis.slug}}/{{produkdetail.slug}}/" target="_blank"><i class="fa fa-whatsapp wa1"></i> Share whatsapp</a>
+                                        </li>
+                                        <li><a href="https://telegram.me/share/url?url=https://{{domain}}/produk/{{produkdetail.jenis.slug}}/{{produkdetail.slug}}/" target="_blank"><i class="fa fa-send tl1"></i> Share Telegram</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="cor-p4">
+                             
+                                <div class="text-justify">{{produkdetail.keterangan|safe}}
+                                 </div>
+                                
+                            </div>
+                      
+                            
+                          
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content  %}

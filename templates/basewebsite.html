@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+
+<head>
+    <title>{{judul}}</title>
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Web Wifi Qiana Net Work">
+    <meta name="keyword" content="Wifi Qiana Net Work">
+    <!-- FAV ICON(BROWSER TAB ICON) -->
+    <!-- FAV ICON(BROWSER TAB ICON) -->
+    <link rel="shortcut icon" href="{% static 'web/images/logoo.ico' %}" type="image/x-icon">
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CJosefin+Sans:600,700" rel="stylesheet">
+    <!-- FONTAWESOME ICONS -->
+    <link rel="stylesheet" href="{% static 'web/css/font-awesome.min.css' %}">
+    
+    <!-- ALL CSS FILES -->
+    <link href="{% static 'web/css/materialize.css' %}" rel="stylesheet">
+    <link href="{% static 'web/css/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'web/css/style.css' %}" rel="stylesheet" />
+    <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
+    <link href="{% static 'web/css/style-mob.css' %}" rel="stylesheet" />
+    <script src="{% static 'admin/js/jquery.min.js' %}"></script>
+    <script src="{% static 'admin/sweetalert.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    
+</head>
+
+<body>
+    {% include "navbarwebsite.html" %}
+
+{% block content %}
+
+{% endblock content %}
+ <!-- FOOTER COURSE BOOKING -->
+    
+
+    <!-- FOOTER -->
+    <section class="wed-hom-footer">
+        <div class="container">
+          
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Produk Kami</h4>
+                    <ul>
+                    {% for row in produkfooter %}
+                        <li style="color:white;"><i class="fa fa-angle-double-right"></i> <a href="{% url 'pasangproduk' row.slug  %}">{{row.nama_produk|title}}</a></li>
+                    {% empty %}
+                        <li><div class="alert alert-danger">Produk Masih kosong</div></li>
+                    {% endfor %} 
+
+                   
+                                                
+                    </ul>
+                </div>
+                
+                <div class="col-md-6" >
+                    <h4>Alamat dan Kontak</h4>
+                    <ul>
+                       <li style="color:white;"><i class="fa fa-home"></i> Jln Diponegoro Paiton Probolinggo </li>
+                        <li style="color:white;"><i class="fa fa-whatsapp"></i> 084332454344 </li>
+                        <li style="color:white;"><i class="fa fa-envelope"></i> qiana.wifi@wifi.com</li>
+                        <li style="color:white;"><i class="fa fa-facebook"></i> @qiana.wifi</li>
+                        <li style="color:white;"><i class="fa fa-instagram"></i> @qiana.wifi</li>
+                        <li style="color:white;"><i class="fa fa-twitter"></i> @qiana.wifi</li>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+
+    <!-- COPY RIGHTS -->
+    <section class="wed-rights">
+        <div class="container">
+            <div class="row">
+                <div class="copy-right">
+                   <a target="_blank" href="">Tim Qiana Wifi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- SOCIAL MEDIA SHARE -->
+    <section>
+        <div class="icon-float">
+            <ul>
+                {% comment %} {% for row in kontakfooter %}
+                    {% if row.facebook %}
+                    
+                <li><a href="{{row.facebook}}" target="_blank" class="fb1"><i class="fa fa-facebook" aria-hidden="true"></i></a> </li>
+            
+                    {% endif %}
+                     {% if row.twitter %}
+                    
+                <li><a href="{{row.twitter}}" target="_blank" class="tw1"><i class="fa fa-twitter" aria-hidden="true"></i></a> </li>
+            
+                    {% endif %}
+                     {% if row.no_whatsapp %}
+                    
+                <li><a href="https://api.whatsapp.com/send?phone={{row.no_whatsapp}}&text=Assalamualaikum..." target="_blank"  class="wa1"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> </li>
+            
+                    {% endif %}
+                     {% if row.email %}
+                    
+                <li><a href="mailto:{{row.email}}" target="_blank" class="sh1"><i class="fa fa-envelope-o" aria-hidden="true"></i></a> </li>
+            
+                    {% endif %}
+                     {% if row.instagram %}
+                    
+                <li><a href="{{row.instagram}}" target="_blank" class="st1"><i class="fa fa-instagram" aria-hidden="true"></i></a> </li>
+            
+                    {% endif %}
+                 {% endfor %} {% endcomment %}
+            </ul>
+        </div>
+    </section>
+
+    <!--Import jQuery before materialize.js-->
+    <script src="{% static 'web/js/main.min.js' %}"></script>
+    <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'web/js/materialize.min.js' %}"></script>
+    <script src="{% static 'web/js/custom.js' %}"></script>
+</body>
+
+</html>
+    

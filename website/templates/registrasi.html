@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    	<meta name="author" content="Moh. Ainol Yaqin">
+
+    <meta name="description" content="Halaman Login Petani Porang Bondowoso">
+    <meta name="keyword" content="Alfa Porang Mandiri">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registrasi Wifi | Qiana</title>
+    <link rel="shortcut icon" href="{% static 'web/images/logoo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/bootstrap.min.css' %}">
+      {% include "css_alert.html" %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title">{{judul}} </div>
+      <form action="" method="POST">
+       {% csrf_token %}
+       <div align="center">
+       {% include "alert.html" %}   
+       </div>
+       	{{ form|crispy }}
+          {{formuser}}
+                          <tr><th><label for="id_pass">Password*:</label></th><td><input type="password" name="password" class="form-control" required  maxlength="150"></td></tr>
+       
+        <div class="field ">
+              
+          <input type="submit" value="Login">
+         
+        </div>
+        <center><small>Silakan Login <a href="{% url 'login_page' %}">disini</a></small></center>
+      </form>
+    </div>
+
+  </body>
+</html>

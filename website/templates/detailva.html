@@ -1,0 +1,30 @@
+                                        {% for row in pasang %}
+                                                <tr>
+                                                   <td>{{ forloop.counter }}</td>
+                                                    <td>{{row.kode_pasang}}</td>
+                                                    <td>{{row.produk.nama_produk}}</td>
+                                                    <td>{{row.bank|upper}}</td>
+                                                    <td>{{row.status}}</td>
+                                                    <td>
+                                                    {% if row.tanggal_pasang %}
+                                                        {{row.tanggal_pasang}}
+                                                    {% else %}
+                                                        Belum Ada Jadwal
+                                                    {% endif %}
+                                                    </td>
+                                                   
+                                                    <td>
+                                                    <a href="{% url 'datapasangva' row.kode_pasang  %}" type="buttom" class="btn btn-info"> Virtual Account/Cek Status</a>
+                                                    </td>
+                                                    
+													
+                                                </tr>
+                                            {% empty %}
+                                            <tr>
+                                                    <td colspan="6" align="center">Data Pemasangan Masih Kosong</td>
+                                                    
+                                                    
+													
+                                                </tr>
+                                            {% endfor %}
+                                                

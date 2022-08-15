@@ -1,0 +1,11 @@
+
+
+{% if messages %}
+                                    <div class="notif"><ul>
+                                    {% for message in messages  %}
+                                        <li class="{{message.tags}}">{{ message }}</li>
+                                       
+                                    {% endfor %}
+                                    </ul> 
+                                    </div>
+                                {% endif %}

@@ -1,0 +1,176 @@
+{% load static %}
+    <!-- MOBILE MENU -->
+    <section>
+        <div class="ed-mob-menu">
+            <div class="ed-mob-menu-con">
+                <div class="ed-mm-left">
+                    <div class="wed-logo">
+                        <a href="index-2.html"><img src="{% static 'web/images/logo.png' %}" alt="" />
+						</a>
+                    </div>
+                </div>
+                <div class="ed-mm-right">
+                    <div class="ed-mm-menu">
+                        <a href="#!" class="ed-micon"><i class="fa fa-bars"></i></a>
+                        <div class="ed-mm-inn">
+                            <a href="#!" class="ed-mi-close"><i class="fa fa-times"></i></a>
+                             <ul>
+                             <li class="{% if menu == 'beranda' %} active {% endif %}">
+                                    <a href="{% url 'beranda' %}">Beranda</a>
+                            </li>
+                            
+										 {% if user.is_authenticated %}
+											{% for group in user.groups.all  %}
+												{% if group.name == "administrator" %}
+													<li>
+														<a href="{% url 'beranda_admin' %}">Administrator</a>
+													</li>
+												{% endif %}
+												{% if group.name == "pelanggan" %}
+													<li class="{% if menu == 'pasangbaru' %} active {% endif %}">
+														<a href="{% url 'datapasang' %}">Pasang Baru</a>
+													</li>
+													<li class="{% if menu == 'pembayaranwifi' %} active {% endif %}">
+														<a href="{% url 'pembayaranbulanan' %}">Pembayaran</a>
+													</li>
+													<li class="{% if menu == 'ajukanperbaikan' %} active {% endif %}">
+														<a href="{% url 'ajukanperbaikan' %}">Ajukan Perbaikan</a>
+													</li>
+												
+												{% endif %}
+												
+											{% endfor %}
+										{% endif %}
+
+                                {% if user.is_authenticated %}
+								<li class="">
+                                    <a href="{% url 'logout' %}">LogOut</a>
+                                </li>
+								{% else %}
+								<li class="">
+                                    <a href="{% url 'registrasi' %}">Register Sekarang</a>
+                                </li>
+                                <li class="">
+                                    <a href="{% url 'login_page' %}">Login Disini</a>
+                                </li>
+								{% endif %}
+                                
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--HEADER SECTION-->
+    <section>
+        <!-- TOP BAR -->
+        <div class="ed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ed-com-t1-left">
+                            <ul>
+                  
+                                
+                            </ul>
+                        </div>
+                        
+                        <div class="ed-com-t1-social">
+                            <ul>
+                           
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGO AND MENU SECTION -->
+        <div class="top-logo" data-spy="affix" data-offset-top="250">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="wed-logo">
+                            <a href=""><img src="{% static 'web/images/logo.png' %}" alt="" />
+                            </a>
+                        </div>
+                        <div class="main-menu">
+                            <ul>
+                                <li class="{% if menu == 'beranda' %} active {% endif %}">
+                                    <a href="{% url 'beranda' %}">Beranda</a>
+                                </li>
+                               {% if user.is_authenticated %}
+											{% for group in user.groups.all  %}
+												{% if group.name == "administrator" %}
+													<li>
+														<a href="{% url 'beranda_admin' %}">Administrator</a>
+													</li>
+												{% endif %}
+												{% if group.name == "pelanggan" %}
+													<li class="{% if menu == 'pasangbaru' %} active {% endif %}">
+														<a href="{% url 'datapasang' %}">Pasang Baru</a>
+													</li>
+													<li class="{% if menu == 'pembayaranwifi' %} active {% endif %}">
+														<a href="{% url 'pembayaranbulanan' %}">Pembayaran</a>
+													</li>
+													<li class="{% if menu == 'ajukanperbaikan' %} active {% endif %}">
+														<a href="{% url 'ajukanperbaikan' %}">Ajukan Perbaikan</a>
+													</li>
+												
+												{% endif %}
+												
+											{% endfor %}
+										{% endif %}
+
+                                {% if user.is_authenticated %}
+								<li class="">
+                                    <a href="{% url 'logout' %}">LogOut</a>
+                                </li>
+								{% else %}
+								<li class="">
+                                    <a href="{% url 'registrasi' %}">Register Sekarang</a>
+                                </li>
+                                <li class="">
+                                    <a href="{% url 'login_page' %}">Login Disini</a>
+                                </li>
+								{% endif %}
+                                
+                               
+                               
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="all-drop-down-menu">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="search-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="search-form">
+                         <form action=""  method="GET">
+                                <div class="sf-type">
+                                    <div class="sf-input">
+                                        <input type="text"  name="kata" id="sf-box" placeholder="Pencarian Berita">
+                                    </div>
+                                    
+                                </div>
+                                <div class="sf-submit">
+                                    <input type="submit" value="Pencarian....">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--END HEADER SECTION-->

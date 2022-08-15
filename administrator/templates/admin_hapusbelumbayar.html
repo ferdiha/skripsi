@@ -1,0 +1,56 @@
+{% extends "baseadmin.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
+                      
+                           <h3 class="animated fadeInLeft">Qiana Net Work (Pemasangan Wifi)</h3>
+
+        
+                    </div>
+                  </div>                    
+                </div>
+
+                <div class="col-md-12" style="padding:20px;">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-12">
+                                <div class="panel box-v4">
+                                    <div class="panel-heading bg-white border-none">
+                                      <h4><span class="icon-notebook icons"></span> {{judul}}</h4>
+                                    </div>
+                                    <div class="panel-body padding-0">
+                                        <div class="col-md-12 col-xs-12 col-md-12 padding-0 box-v4-alert">
+                                          <div class="col-md-12">
+                                              <div class="panel box-v1">
+                                                <div class="panel-heading bg-white border-none">
+                          <h4> Apakah Data Belum bayar tersebut mau dihapus <b>"{{hapus}}"</b> ?</h4>
+													 <form action="{% url 'deletebelumbayar_admin' hapus.id %}" method="POST">
+                    									{% csrf_token %}    
+													<br>	 	
+													<div class="form-group text-center">
+															<input type="submit" class="btn btn-primary" value="HAPUS">
+															<a href="{% url 'belumbayar_admin'  %}" class="btn btn-danger">BATAL</a>
+														</div>
+													</form>
+                                                 
+                                                </div>
+                                              </div>
+                                          </div>
+
+
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+
+
+                        </div>
+                    </div>
+      		  </div>
+
+ 
+{% endblock content  %} 

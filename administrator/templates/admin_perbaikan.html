@@ -1,0 +1,88 @@
+{% extends "baseadmin.html" %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
+                 
+                           <h3 class="animated fadeInLeft">Qiana Net Work (Pemasangan Wifi)</h3>
+
+        
+                    </div>
+                  </div>                    
+                </div>
+
+                <div class="col-md-12" style="padding:20px;">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-12">
+                                <div class="panel box-v4">
+                                    <div class="panel-heading bg-white border-none">
+                                      <h4><span class="icon-notebook icons"></span> {{judul}}</h4>
+                                    </div>
+                                    <div class="panel-body padding-0">
+                                        <div class="col-md-12 col-xs-12 col-md-12 padding-0 box-v4-alert">
+                                          <div class="col-md-12">
+                                              <div class="panel box-v1">
+                                                <div class="panel-heading bg-white border-none">
+                                                
+                                                  <hr/>
+                                                  <div class="table-responsive">
+                                                   
+                                                      <table class="table table-hover">
+                                                          <thead>
+                                                            <tr align="center">
+                                                             <th>No</th>
+                                                              <th>Tanggal Pengajuan</th>
+                                                              <th>Nama Pelapor</th>
+                                                              <th>Jenis Produk</th>
+                                                              <th>Keluhan</th>
+                                                              <th>Alamat </th>
+                                                              <th>No Whatsapp </th>
+                                                              <th>Status </th>
+                                                              <th>Aksi</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                          {% for row in data %}
+                                                          <tr align="center">
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>{{row.date_created}}</td>
+                                                            <td>{{row.pelanggan.nama}}</td>
+                                                            <td>{{row.detailpasang.produk.nama_produk}}</td>
+                                                            <td>{{row.keluhan|safe}}</td>
+                                                            <td>{{row.pelanggan.alamat|safe}}</td>
+                                                            <td>{{row.pelanggan.wa}}</td>
+                                                            <td>{{row.status}}</td>
+                                                            
+                                                            <td><a href="{% url 'editperbaikan_admin' row.id  %}" class="btn btn-danger btn-sm">Edit</a></td>
+                                                          </tr>
+                                                          {% empty %}
+                                                          <tr>
+                                                            
+                                                            <td colspan="8" align="center">Data perbaikan Kosong</td>
+                                                          </tr>
+                                                          {% endfor %}
+                                                      </table>
+                                                  </div>
+                                                 
+                                                </div>
+                                              </div>
+                                          </div>
+
+
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+
+
+                        </div>
+                    </div>
+      		  </div>
+
+ 
+{% endblock content  %} 

@@ -1,0 +1,289 @@
+{% extends "baseadmin.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+   <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
+                      
+                           <h3 class="animated fadeInLeft">Qiana Net Work (Pemasangan Wifi)</h3>
+
+       
+                    </div>
+                  </div>                    
+                </div>
+
+                <div class="col-md-12" style="padding:20px;">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-12">
+                                <div class="panel box-v4">
+                                    <div class="panel-heading bg-white border-none">
+                                      <h4><span class="icon-notebook icons"></span> {{judul}}</h4>
+                                    </div>
+                                    {% comment %}  {% endcomment %}
+                                   
+                      
+                                    <div class="col-md-12 tabs-area">
+
+                                      <ul id="tabs-demo6" class="nav nav-tabs nav-tabs-v6" role="tablist">
+                                        <li role="presentation" class="active">
+                                          <a href="#tabs-demo7-area1" id="tabs-demo6-1" role="tab" data-toggle="tab" aria-expanded="true">Data Pemasangan</a>
+                                        </li>
+                                        <li role="presentation" class="">
+                                          <a href="#tabs-demo7-area2" role="tab" id="tabs-demo6-2" data-toggle="tab" aria-expanded="false">Setting Pembayaran</a>
+                                        </li>
+                                        
+                                      </ul>
+                                      <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tabs-demo7-area1" aria-labelledby="tabs-demo7-area1">
+                                        {% comment %}  {% endcomment %}
+                      <div class="table-responsive">
+                                                   
+                                                      <table class="table table-hover">
+                                                          <thead>
+                                                            <tr align="center">
+                                                              <th>No</th>
+                                                              <th>Kode Pasang</th>
+                                                              <th>Nama Pelanggan</th>
+                                                              <th>Jenis Produk</th>
+                                                              <th>Bank</th>
+                                                              <th>Keterangan</th>
+                                                              <th>Status</th>
+                                                              <th>Tanggal Pasang</th>
+                                                              <th>Aksi</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                          {% for row in tidakselesai %}
+                                                          <tr align="center">
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>{{ row.kode_pasang }}</td>
+                                                            <td>{{ row.pelanggan.nama }}</td>
+                                                            <td>{{ row.produk.nama_produk }}</td>
+                                                            <td>{{ row.bank }}</td>
+                                                            <td>{{ row.keterangan }}</td>
+                                                            <td>{{ row.status }}</td>
+                                                            <td>{{ row.tanggal_pasang }}</td>
+                                                            <td><a href="{% url 'deletepasang_admin' row.id %}" class="btn btn-primary btn-sm">Hapus</a><a href="{% url 'editpasang_admin' row.pk %}" class="btn btn-danger btn-sm">Edit</a></td>
+                                                           
+                                                           
+                                                          {% empty %}
+                                                          <tr>
+                                                            
+                                                            <td colspan="9" align="center">Data Pemasangan Wifi Kosong</td>
+                                                          </tr>
+                                                          {% endfor %}
+                                                      </table>
+                                                  </div>
+                                        {% comment %}  {% endcomment %}
+                                          </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
+                                        {% comment %}  {% endcomment %}
+                      <form action="#" method="post" id="simpanmulti" enctype="multipart/form-data">
+													 {% csrf_token %}
+                      <div class="col-md-6">
+                          <div class="panel panel-info">
+                            <div class="panel-heading">
+                              <h4>Pilih Bulan</h4>
+                            </div>
+                            <div class="panel-body">
+                                <select class="form-control" name="bulan" id="bulan">
+                                    <option value="0" selected>--- Pilih Bulan ---</option>
+                                    <option value="Januari">Januari</option>
+                                    <option value="Februari">Februari</option>
+                                    <option value="Maret">Maret</option>
+                                    <option value="April">April</option>
+                                    <option value="Mei">Mei</option>
+                                    <option value="Juni">Juni</option>
+                                    <option value="Juli">Juli</option>
+                                    <option value="Agustus">Agustus</option>
+                                    <option value="September">September</option>
+                                    <option value="Oktober">Oktober</option>
+                                    <option value="November">November</option>
+                                    <option value="Desember">Desember</option>
+                                   
+                                  </select>
+                            </div>
+                          </div>
+                     </div>
+                      <div class="col-md-6">
+                          <div class="panel panel-warning">
+                            <div class="panel-heading">
+                              <h4>Pilih Tahun</h4>
+                            </div>
+                            <div class="panel-body">
+                                <select class="form-control" name="tahun" id="tahun">
+                                   <option value="0" selected>--- Pilih Tahun ---</option>
+                                   {% for th in tahun %}
+                                    <option value="{{th.nama}}">{{th.nama}}</option>
+                                   {% endfor %}
+                                   
+                                  </select>
+                            </div>
+                          </div>
+                     </div>
+                        <div class="responsive-table">
+                        <table class="table" style="border: 1px solid #ddd; padding: 8px;">
+                            <thead> 
+                                <tr style="padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #4caf50; color: white;">
+                                    <th width="150">
+                                        <input type="checkbox" class="checkAll" name="checkAll"/> Pilih Semua
+                                    </th>
+                                    <th>Kode Pasang</th>
+                                    <th>Nama Pelanggan</th>
+                                    <th>Jenis Produk</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                            {% for kode in selesai %}
+                            <tr>
+                                    <td><input type="checkbox" name="item[]" value="{{kode.id}}"></td>
+                                    <td>{{kode.kode_pasang}}</td>
+                                    <td>{{kode.pelanggan.nama}}</td>
+                                    <td>{{kode.produk.nama_produk}}</td>
+                                </tr>
+                            {% empty %}
+                            <tr>
+                              <td colspan="4" align="center">Data Pemasangan Status Selesai Kosong</td>
+                            </tr>
+                            {% endfor %}
+                                
+                                
+
+                            </tbody>
+                        </table>
+                        </div>
+                        <div class="text-center"> <span id="loading" class="text-success" style="display:none;"><i class="fa fa-spinner fa-spin fa-lg"></i> Memuat data..</span> </div>
+                              <div class="col-md-12" style="margin-top:5px;">
+                              
+                                   <button class="btn ripple-infinite btn-raised btn-success" type="submit" id="simpan">
+                                    <div>
+                                      <span>SIMPAN</span>
+                                    </div>
+                                  </button>
+                                  
+                              </div>
+                              
+                          </form>
+                                        {% comment %}  {% endcomment %}
+                                        </div>
+                                      
+                                        
+
+                                    </div>
+                
+                                    {% comment %}  {% endcomment %}
+                                    </div>
+                                </div> 
+                            </div>
+
+
+                        </div>
+                    </div>
+      		  </div>
+
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+  $(".checkAll").on("click", function() {
+    $(this)
+      .closest("table")
+      .find("tbody :checkbox")
+      .prop("checked", this.checked)
+      .closest("tr")
+      .toggleClass("selected", this.checked);
+  });
+
+  $("tbody :checkbox").on("click", function() {
+    // toggle selected class to the checkbox in a row
+    $(this)
+      .closest("tr")
+      .toggleClass("selected", this.checked);
+
+    // add selected class on check all
+    $(this).closest("table")
+      .find(".checkAll")
+      .prop("checked",
+        $(this)
+          .closest("table")
+          .find("tbody :checkbox:checked").length ==
+          $(this)
+            .closest("table")
+            .find("tbody :checkbox").length
+      );
+  });
+});
+
+
+   $('body').on('click', '#simpan',function(e) {
+    e.preventDefault();
+    if(confirm('Nama-nama akan di setting pembayaran Bulanan')){
+        var id=[];
+        var csr = $("input[name=csrfmiddlewaretoken]").val();
+        var  bulan =$('#bulan').val();
+        var  tahun =$('#tahun').val();
+        $(':checkbox:checked').each(function(i){
+          id[i]=$(this).val()
+        })
+
+        var removeItem = 'on';
+        id = jQuery.grep(id, function(value) {
+          return value != removeItem;
+        });
+
+         if (bulan== "0") {
+        swal({
+            title: "Perhatikan!!",
+            text: "Bulan Belum dipilih",
+            closeModal: false
+        }).then(function() {
+                swal.close();
+                $('#bulan').focus();
+        });
+    }else if(tahun == "0"){
+        swal({
+            title: "Perhatikan!!",
+            text: "Tahun Belum dipilih",
+            closeModal: false
+        }).then(function() {
+                swal.close();
+                $('#tahun').focus();
+        });
+  
+    }else{
+              if(id.length===0){
+          alert("Silakan pilih mahasiswa yang akan di ploting")
+        }else{
+        $('#loading').show();
+        $('#simpan').attr('disabled','disabled'); 
+       mydata = {id :id,bulan:bulan,tahun:tahun,csrfmiddlewaretoken: csr};
+
+        $.ajax({
+              type: "POST",
+              url: "{% url 'simpansettingpasang' %}",
+              data: mydata,
+              success: function (data) { 
+                  
+                  swal({
+                      title: "Info",
+                      text: "Data Berhasil tersimpan",
+                      icon: "success",
+                      button: "Ok",
+                  });
+                   $('#loading').hide();
+                    $('#simpan').removeAttr('disabled','disabled'); 
+                     $('form')[0].reset();
+                
+              }
+          });
+        }
+
+    }
+
+
+    }
+     
+ });
+</script>
+{% endblock content  %} 

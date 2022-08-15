@@ -1,0 +1,149 @@
+
+{% extends "basewebsite.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<section>
+        <div class="container">
+            <div class="row">
+                <div class="cor">
+                   
+                    <section>
+        <div class="container com-sp">
+            <div class="row">
+                <div class="con-title">
+                    <h2>Pasang  <span>Wifi Qiana</span></h2>
+                    {% comment %}  {% endcomment %}
+                     <div class="sb2-2-3">
+                    <div class="row">
+                        <div class="col-md-12">
+						<div class="box-inn-sp admin-form">
+                                <div class="inn-title">
+                                    <h4>Data Pemasangan Wifi Qiana</h4>
+                                   
+                                </div>
+                                <div class="tab-inn">
+                                <div class="table-responsive table-desi">
+                                        <table class="table table-hover">
+                                         {% csrf_token %}
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+													<th>Kode Pemasangan</th>
+                                                    <th>Jenis Produk Wifi</th>
+                                                    <th>Bank Virtual Account</th>
+                                                    <th>Status Pemasangan</th>
+													<th>Tanggal Pemasangan</th>
+													<th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="datapasangva">
+                                            
+                                      
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% comment %}  {% endcomment %}
+                </div>
+            </div>
+          
+        </div>
+    </section>
+        
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<script type="text/javascript" language="javascript">
+datava()
+
+ function datava()
+    {
+      var csr = $("input[name=csrfmiddlewaretoken]").val();
+      $.ajax({
+                url: "{% url 'detailva' %}",
+                method:"POST",
+                data: {
+                  csrfmiddlewaretoken: csr
+                  },
+                dataType: "text",
+                success: function (data) {
+                  $('#datapasangva').html(data);
+                 
+                }
+            });    
+    }
+
+  
+
+
+
+{% comment %} $('body').on('submit', '#simpanpasangbaru',function (e) {
+e.preventDefault();
+   let simpan = confirm("Apakah Anda Yakin akan melakukan pemasangan Wifi?");
+             $('#loading').show();
+              $('#simpan').attr('disabled','disabled'); 
+            if(simpan){
+               $.ajax({
+                     
+                    url: "{% url 'simpanpasangbaru' %}",
+                    type:"post",
+                    data:new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function(){
+                       
+                      }, 
+                     
+                        success: function(respon){
+                          $('#loading').hide();
+                          $('#simpan').removeAttr('disabled','disabled');
+
+                          swal({
+                                title: "Ada sudah tersimpan",
+                                text: "Selamat bergabung dengan Qiana Wifi, silakan buat VA (Virtual Account)",
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: true,
+                                })
+                                .then((willDelete) => {
+                                if (willDelete) {
+                                  window.location.href = "{% url 'datapasang' %}";
+                                } else {
+                                   window.location.href = "{% url 'datapasang' %}";
+                                }
+                                });
+                            
+                    },
+                    error:function(respon){
+                        swal("Error", "Maaf terdapat error pada data anda", "error");
+                         $('#loading').hide();
+                          $('#simpan').removeAttr('disabled','disabled');
+                    }
+                });
+              
+            
+              
+               
+            }else{
+                alert("Data batal untuk disimpan");
+                $('#loading').hide();
+                $('#simpan').removeAttr('disabled','disabled');
+                 
+                 
+            }
+            
+  }); {% endcomment %}
+
+
+ </script>
+{% endblock content  %}

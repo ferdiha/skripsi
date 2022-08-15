@@ -1,0 +1,70 @@
+
+{% extends "basewebsite.html" %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section>
+        <div class="container">
+            <div class="row">
+                <div class="cor">
+                   
+                    <section>
+        <div class="container com-sp">
+            <div class="row">
+                <div class="con-title">
+                    <h2>Form Perbaikan  <span>Wifi Qiana</span></h2>
+                    {% comment %}  {% endcomment %}
+                     <div class="sb2-2-3">
+                    <div class="row">
+                        <div class="col-md-12">
+						<div class="box-inn-sp admin-form">
+                                <div class="inn-title">
+                                    <h4>{{judul}}</h4>
+                                   
+                                </div>
+                                <div class="tab-inn">
+                               
+
+                                    <form action="#" method="post" enctype="multipart/form-data">
+									{% csrf_token %}
+                                         <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea name="keluhan" required></textarea>
+                                                <label class="">KELUHAN/PERMASALAHAN</label>
+                                            </div>
+                                        </div>
+                                         <div class="row">
+                                            <div class="input-field col s12">
+                                                <i class="waves-effect waves-light btn-large waves-input-wrapper" style=""><input type="submit" class="waves-button-input" value="SIMPAN"></i>
+                                                	<a href="{% url 'ajukanperbaikan'  %}" type="button" class="btn btn-danger btn-large"><i class="fa fa-angle-double-left"></i> Kembali</a>
+                                            </div>
+                                            
+                                        </div>
+									<br>		
+									</form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% comment %}  {% endcomment %}
+                </div>
+            </div>
+          
+        </div>
+    </section>
+        
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<script type="text/javascript" language="javascript">
+
+
+ </script>
+{% endblock content  %}

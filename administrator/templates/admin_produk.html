@@ -1,0 +1,79 @@
+{% extends "baseadmin.html" %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <div id="content">
+                <div class="panel">
+                  <div class="panel-body">
+                      <div class="col-md-6 col-sm-12">
+                       
+                           <h3 class="animated fadeInLeft">Qiana Net Work (Pemasangan Wifi)</h3>
+
+        
+                    </div>
+                  </div>                    
+                </div>
+
+                <div class="col-md-12" style="padding:20px;">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-12 padding-0">
+                            <div class="col-md-12">
+                                <div class="panel box-v4">
+                                    <div class="panel-heading bg-white border-none">
+                                      <h4><span class="icon-notebook icons"></span> {{judul}}</h4>
+                                    </div>
+                                    <div class="panel-body padding-0">
+                                        <div class="col-md-12 col-xs-12 col-md-12 padding-0 box-v4-alert">
+                                          <div class="col-md-12">
+                                              <div class="panel box-v1">
+                                                <div class="panel-heading bg-white border-none">
+                                                 <a href="{% url 'formproduk_admin' %}" id="tambah_data" class=" btn btn-3d btn-primary"><i class="fa fa-save"> Tambah Data</i></a>
+                                                  <hr/>
+                                                  <div class="table-responsive">
+                                                   
+                                                      <table class="table table-hover">
+                                                          <thead>
+                                                            <tr align="center">
+                                                              <th>No</th>
+                                                              <th>Nama Produk</th>
+                                                              <th>Harga Pemasangan</th>
+                                                              <th>Harga</th>
+                                                              <th>Aksi</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                          {% for row in data %}
+                                                          <tr align="center">
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>{{row.nama_produk}}</td>
+                                                            <td>Rp. {{row.harga_pemasangan|intcomma}}</td>
+                                                            <td>Rp. {{row.harga|intcomma}}</td>
+                                                            <td><a href="{% url 'deleteproduk_admin' row.id  %}" class="btn btn-primary btn-sm">Hapus</a><a href="{% url 'editproduk_admin' row.slug  %}" class="btn btn-danger btn-sm">Edit</a></td>
+                                                          </tr>
+                                                          {% empty %}
+                                                          <tr>
+                                                            
+                                                            <td colspan="5" align="center">Data Produk Kosong</td>
+                                                          </tr>
+                                                          {% endfor %}
+                                                      </table>
+                                                  </div>
+                                                 
+                                                </div>
+                                              </div>
+                                          </div>
+
+
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+
+
+                        </div>
+                    </div>
+      		  </div>
+
+ 
+{% endblock content  %} 
